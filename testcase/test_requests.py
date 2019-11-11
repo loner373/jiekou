@@ -1,7 +1,7 @@
 import json
 import logging
 import pytest
-
+import hamcrest
 import requests
 
 
@@ -33,5 +33,6 @@ class TestRequest(object):
 
                               },
                           )
-        logging.info(r.text)
-        logging.info(json.dumps(r.json(), indent=2))
+        #logging.info(r.text)
+        #logging.info(json.dumps(r.json(), indent=2))
+        assert r.json()["results"][0]["mobile_tel"] == "18926080076"
