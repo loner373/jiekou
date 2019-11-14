@@ -1,6 +1,30 @@
-def test_cookice(self):
-    self.driver.add_cookie({"name": "JSESSIONID", "value": "abcTceD0FB-Y9e-8HA54w"})
-    self.driver.add_cookie({"name": "sso_cookie",
-                            "value": "3o%2F%2BqYJWo0hM8VKiISsYJw%2F5EGb%2F620DXhi1ZTIatEblgaLD%2FP5eKNn3yVpUD%2FDLyBpe848S%2Bb3r%0AaNp3%2F7VPS86oKuiar0L9tvlvHIg7fw0D1CIqjfY7AgFuea96p7aEHzFHuPFOWmQJCdc%2Fh%2Fshbm1n%0Ar3qVOsBmt93NAjqkMVt41qTs6nPywrS3%2Bv6iS653FdcgM2w80woNZjtIABxi0OwZ0qrHkAQ8bdgO%0A6zEkcPYZdvpG3PIv8Jc3kVSzfLS0MicEejaOWVvegFQhiExyhApqUZZKYP6MIPwhg8pgVrx2ETQN%0A%2BFi3ahhJgXERmtvF0mXgGdszwdAIWk915oNglBCdezOasqApFvmzBbBWoT0CWjim7PBTA%2BPFjAeQ%0ABeYqVQzCGCZiL2GXCYVFQxw644vt2KdXE3hPYemj%2BLyDTDGnZUm0uYfA52D1C07EcatCy9B9bDlH%0ASJqTfXlqTYFfB9sevfKgtf4c3c4V3b6ohPaEXPawuuE5c%2FxwqnqfUIQC5LGIBXwerLxaZiREBN1C%0Agxzr9huoQrp%2FaHHr1w3Roxo4wViPsqa4OHo5DbsVBXnGpHC2c3d2dimG3CuwV5qnrZE4JUKwwZQy%0AQKmYwRpvlbJmeJDtS8o%2FHom15VQbpaJqbtiiJueeKubtMdZea%2BCX3uBxwwsBf6Q2BEKWgjpGsZsc%0AxRk4J5yUEmC6JPKE3I1GO9pHnqdm2FL%2BuR62K2kqp2EAitYl1%2BRGpzpA1BsdWYu3nBR61jiJh6PF%0AYyB9ctk0o3HWko%2B1GpsWP7g2YZnXYGA%2BBwNJhUYQkZJA039P4%2B95WtkCFmMYbU3%2BrtmytWae6hKv%0AG1SsDSLen99PEGw2rxdmtatrICj6hMeS6NuTxOXklh91DhTofXKCFQFTNvGEwlM9WsxCr67tCODW%0AZfNExymihOo0YYtiEl9u4RNJotUQDHj%2BTYCteyZu8TrdeyNSoCoZSqp9xZwLnga5CHbIkFDe8O8S%0AbrHZrUO5Dh2cB9nWSZAEHU7VlbrhdPVdopm%2FcrwbyKZ7n3ZHOH3kgsAAeDf1bLPsYv%2F74HwFtwd4%0AmHI%3D"})
-    self.driver.add_cookie({"name": "info",
-                            "value": "%7B%22sfbd%22:%221%22,%22rzrq_creditAccount%22:%221390000235%22,%22net_addr%22:%22text%252Fhtml%22,%22crm_name%22:%22%E9%99%88%E8%BE%89%22,%22trade_account%22:%221300022253%22,%22crm_no%22:%226423083%22,%22trade_name%22:%22%E9%99%88%E8%BE%89%22,%22branch_no%22:%220013%22,%22device_info%22:%22Mozilla/5.0%20(Windows%20NT%206.1@#@%20Win64@#@%20x64@#@%20rv:70.0)%20Gecko/20100101%20Firefox/70.0%22,%22crm_client_type%22:%220%22,%22identity_exp_date%22:%2220260812%22,%22branch_name%22:%22%E4%B8%8A%E6%B5%B7%E5%98%89%E5%96%84%E8%B7%AF%E8%AF%81%E5%88%B8%E8%90%A5%E4%B8%9A%E9%83%A8%22,%22trade_no%22:%221300022253%22,%22wealth_product%22:%22%22,%22wealth_level%22:%220%22,%22identity_idno%22:%22310230197711013718%22%7D"})
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+
+class test(object):
+    url = "http://t0st.ytzq.com:8443"
+    driver = webdriver.Chrome()
+    driver.implicitly_wait(10)
+    driver.get(url)
+    driver.maximize_window()
+    # search_window0=driver.current_window_handle
+    # print(search_window0)
+    driver.find_element_by_link_text("登录")
+    driver.find_element_by_link_text("登录").click()
+
+    driver.implicitly_wait(10)
+
+    # driver.switch_to_window(driver.window_handles[1])
+    # search_window = driver.current_window_handle
+    # print(search_window)
+    # handles = driver.window_handles
+    # print(type(handles))
+    # time.sleep(3)
+    # driver.switch_to_window(search_window)
+    driver.find_element_by_xpath("//*[text()='请输入客户代码']")
+    driver.find_element_by_xpath("//*[text()='请输入客户代码']").click()
+
+
