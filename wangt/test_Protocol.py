@@ -2,7 +2,6 @@ import json
 import logging
 import pytest
 
-import requests
 
 from wangt.Jybl import Jyblyw
 from wangt.cookices import Wangt
@@ -20,7 +19,7 @@ class TestProtocol(object):
         }
         r = Jyblyw.Beiyong(self, **kwargs)
         logging.info(json.dumps(r.json(), indent=2))
-        assert r.json()["results"][0]["linkman_tel"] == "18926080076"
+        assert r.json()["results"][0]["linkman_tel"] == "13713727983"
 
     def test_Chaxunsfz(self):
         kwargs = {
@@ -46,4 +45,8 @@ class TestProtocol(object):
         }
         r = Jyblyw.Beiyong(self, **kwargs)
         logging.info(json.dumps(r.json(), indent=2))
-        assert r.json()["results"][0]["exp_date"] == "20191027"
+        assert r.json()["results"][0]["exp_date"] == "20191114"
+        assert r.json()["results"][0]["isOutTime"] == "true"
+        assert r.json()["results"][0]["rating_date"] == "20191113"
+        assert r.json()["results"][0]["user_role"] == "1"
+        assert r.json()["results"][0]["next_rating_date"] == "20191113"
