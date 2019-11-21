@@ -1,4 +1,4 @@
-from wangt.cookices import Wangt
+from wangt.configure.cookices import Wangt
 import requests
 
 
