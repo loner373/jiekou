@@ -1,17 +1,14 @@
-import json
-import logging
 from wangt.Business.Jybl import Jyblyw
 from wangt.configure.configure import Basics
 
 
 class TestProtocol(Basics):
     def test_Beiyonglxr(self):
-        params = {
-            "funcNo": "100966",
-            "trade_no": "1100004603",
-        }
-        # r = Jyblyw.Beiyong(self, **params)
-        # logging.info(json.dumps(r.json(), indent=2))
+        # params = {
+        #     "funcNo": "100966",
+        #     "trade_no": "1100004603",
+        # }
+        params = Jyblyw.Beiyong(self)
         TestProtocol \
             .set_params(self, params) \
             .run()\
@@ -24,13 +21,10 @@ class TestProtocol(Basics):
             "funcNo": "160101",
             "trade_no": "1100004603"
         }
-        # r = Jyblyw.Beiyong(self, **kwargs)
-        # logging.info(json.dumps(r.json(), indent=2))
-        # assert r.json()["results"][0]["mobile_tel"] == "18926080076"
         TestProtocol \
             .set_params(self, kwargs) \
             .run() \
-            .validate("results.mobile_tel", "18926080076")
+            .validate("json().results.mobile_tel", "18926080076")
 
     # @pytest.mark.parametrize("ziduan","velus", [
     #         ("exp_date", "true"),
@@ -45,13 +39,6 @@ class TestProtocol(Basics):
             "trade_no": "1100004603",
             "crm_client_type": "0",
         }
-        # r = Jyblyw.Beiyong(self, **kwargs)
-        # logging.info(json.dumps(r.json(), indent=2))
-        # assert r.json()["results"][0]["exp_date"] == "20191114"
-        # assert r.json()["results"][0]["isOutTime"] == "true"
-        # assert r.json()["results"][0]["rating_date"] == "20191113"
-        # assert r.json()["results"][0]["user_role"] == "1"
-        # assert r.json()["results"][0]["next_rating_date"] == "20191113"
         TestProtocol \
             .set_params(self, params) \
             .run() \
@@ -62,7 +49,7 @@ class TestProtocol(Basics):
             .validate("json().results.next_rating_date", "20191115")
 
     def test_Kechuangban(self):
-        kwargs = {
+        params = {
             "funcNo": "160501",
             "trade_no": "1100004603",
             "trade_account": "1100004603",
@@ -76,10 +63,11 @@ class TestProtocol(Basics):
             "sh_a_xy": "0",
             "sh_trdacct": "A427171551",
         }
-        r = Jyblyw.Beiyong(self, **kwargs)
-        logging.info(json.dumps(r.json(), indent=2))
-        assert r.json()["results"][0]["exp_date"] == "20191114"
-        assert r.json()["results"][0]["isOutTime"] == "true"
-        assert r.json()["results"][0]["rating_date"] == "20191113"
-        assert r.json()["results"][0]["user_role"] == "1"
-        assert r.json()["results"][0]["next_rating_date"] == "20191113"
+        TestProtocol \
+            .set_params(self, params) \
+            .run() \
+            .validate("status_code", 200) \
+            .validate("json().results.trading_expr", "7816")\
+            .validate("json().results.sfdz", "0")\
+            .validate("json().results.isTime", "0")\
+            .validate("json().results.tm", "0")

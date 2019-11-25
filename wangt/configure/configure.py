@@ -29,8 +29,9 @@ class Basics(object):
         value = self.response
         for _key in key.split("."):
             if isinstance(value, requests.Response):
-                if _key == "json()":
+                if _key in ["json()","json"]:
                     value = self.response.json()
+                    print("++++++++", value)
                 else:
                     value = getattr(value, _key)
             elif isinstance(value, dict):
