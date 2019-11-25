@@ -4,14 +4,10 @@ from wangt.configure.configure import Basics
 
 class TestProtocol(Basics):
     def test_Beiyonglxr(self):
-        # params = {
-        #     "funcNo": "100966",
-        #     "trade_no": "1100004603",
-        # }
         params = Jyblyw.Beiyong(self)
         TestProtocol \
             .set_params(self, params) \
-            .run()\
+            .run() \
             .validate("status_code", 200) \
             .validate("json().results.linkman_mobile_tel", "18926080076") \
             .validate("json().results.linkman_tel", "18926080076")
@@ -26,13 +22,6 @@ class TestProtocol(Basics):
             .run() \
             .validate("json().results.mobile_tel", "18926080076")
 
-    # @pytest.mark.parametrize("ziduan","velus", [
-    #         ("exp_date", "true"),
-    #         ("rating_date", "20191113"),
-    #         ("exp_date", "20191114"),
-    #         ("isOutTime", "true"),
-    #         ("isOneOutTime", "false")
-    #     ])
     def test_Chaxunfxcp(self):
         params = {
             "funcNo": "160102",
@@ -43,9 +32,9 @@ class TestProtocol(Basics):
             .set_params(self, params) \
             .run() \
             .validate("status_code", 200) \
-            .validate("json().results.exp_date", "20211114")\
-            .validate("json().results.isOutTime", "false")\
-            .validate("json().results.rating_date", "20191115")\
+            .validate("json().results.exp_date", "20211114") \
+            .validate("json().results.isOutTime", "false") \
+            .validate("json().results.rating_date", "20191115") \
             .validate("json().results.next_rating_date", "20191115")
 
     def test_Kechuangban(self):
@@ -67,7 +56,7 @@ class TestProtocol(Basics):
             .set_params(self, params) \
             .run() \
             .validate("status_code", 200) \
-            .validate("json().results.trading_expr", "7816")\
-            .validate("json().results.sfdz", "0")\
-            .validate("json().results.isTime", "0")\
+            .validate("json().results.trading_expr", "7816") \
+            .validate("json().results.sfdz", "0") \
+            .validate("json().results.isTime", "0") \
             .validate("json().results.tm", "0")
