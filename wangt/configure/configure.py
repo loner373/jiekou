@@ -26,18 +26,17 @@ class Basics(object):
         return self
 
     def validate(self, key, expect_value):
-        value = self.response.json()
+        value = self.response
         for _key in key.split("."):
-            print("=======", key.split("."))
             if isinstance(value, requests.Response):
-                value = getattr(value, _key)
-                print("+++++++++", value)
+                if _key == "json()":
+                    value = self.response.json()
+                else:
+                    value = getattr(value, _key)
             elif isinstance(value, dict):
                 value = value[_key]
-
-
-
-        # actual_value = getattr(self.response, key)
-        # assert value == expect_value
-
+                if isinstance(value, list):
+                    value = value[0]
+        print("----------------", value)
+        assert value == expect_value
         return self

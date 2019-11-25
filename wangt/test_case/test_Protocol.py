@@ -4,21 +4,20 @@ from wangt.Business.Jybl import Jyblyw
 from wangt.configure.configure import Basics
 
 
-
 class TestProtocol(Basics):
     def test_Beiyonglxr(self):
         params = {
             "funcNo": "100966",
             "trade_no": "1100004603",
         }
-        r = Jyblyw.Beiyong(self, **params)
+        # r = Jyblyw.Beiyong(self, **params)
         # logging.info(json.dumps(r.json(), indent=2))
-        print("ffdjf++++++", r.json())
-        # assert r.json()["results"][0]["linkman_tel"] == "18926080076"
         TestProtocol \
             .set_params(self, params) \
-            .run() \
-            .validate("results.0.linkman_mobile_tel", "18926080076")
+            .run()\
+            .validate("status_code", 200) \
+            .validate("json().results.linkman_mobile_tel", "18926080076") \
+            .validate("json().results.linkman_tel", "18926080076")
 
     def test_Chaxunsfz(self):
         kwargs = {
@@ -41,10 +40,10 @@ class TestProtocol(Basics):
     #         ("isOneOutTime", "false")
     #     ])
     def test_Chaxunfxcp(self):
-        kwargs = {
+        params = {
+            "funcNo": "160102",
             "trade_no": "1100004603",
             "crm_client_type": "0",
-            "funcNo": "160102",
         }
         # r = Jyblyw.Beiyong(self, **kwargs)
         # logging.info(json.dumps(r.json(), indent=2))
@@ -54,9 +53,13 @@ class TestProtocol(Basics):
         # assert r.json()["results"][0]["user_role"] == "1"
         # assert r.json()["results"][0]["next_rating_date"] == "20191113"
         TestProtocol \
-            .set_params(self, kwargs) \
+            .set_params(self, params) \
             .run() \
-            .validate("status_code", 200)
+            .validate("status_code", 200) \
+            .validate("json().results.exp_date", "20211114")\
+            .validate("json().results.isOutTime", "false")\
+            .validate("json().results.rating_date", "20191115")\
+            .validate("json().results.next_rating_date", "20191115")
 
     def test_Kechuangban(self):
         kwargs = {
