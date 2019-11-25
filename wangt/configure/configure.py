@@ -7,10 +7,11 @@ from wangt.configure.cookices import Wangt
 
 class Basics(object):
     logging.basicConfig(level=logging.INFO)
-    url = "http://t0st.ytzq.com:8443/web/bus/json?"
+    url = ""
     cookies = Wangt.get_cookices()
-    method = "POST"
+    method = ""
     params = {}
+
     def set_params(self, params):
         self.params = params
         return self
@@ -29,7 +30,7 @@ class Basics(object):
         value = self.response
         for _key in key.split("."):
             if isinstance(value, requests.Response):
-                if _key in ["json()","json"]:
+                if _key in ["json()", "json"]:
                     value = self.response.json()
                     print("++++++++", value)
                 else:
